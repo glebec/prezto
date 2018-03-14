@@ -11,3 +11,66 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # Customize to your needs...
+
+# for prompt
+export DEFAULT_USER='glebec'
+
+# for graphviz
+export PATH="/usr/local/graphviz/bin:$PATH"
+# for postgreSQL
+export PATH="$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin"
+
+# rbenv initialization
+# if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+eval "$(rbenv init -)"
+
+# Preferred editor for local and remote sessions
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='nano'
+else
+  export EDITOR='code'
+fi
+
+# aliases
+
+alias l="ls -AFhl"
+
+alias zshcfg='code ~/Dropbox/Sync\ Libraries/ohmyzsh/zshrc.sh'
+alias update='source ~/.zshrc'
+
+alias mongomon='tail -f /usr/local/var/log/mongodb/mongo.log'
+alias mongodrun='mongod --config /usr/local/etc/mongod.conf'
+alias mysqlrun='launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist'
+alias postgresrun='postgres -D /usr/local/var/postgres'
+alias pgrun='postgres -D /usr/local/var/postgres'
+alias pgstop='pg_ctl stop -D /usr/local/var/postgres'
+alias redisrun='redis-server /usr/local/etc/redis.conf'
+
+alias FIRE='git stash && git checkout -b fire && git stash apply && git add -A && git commit -m "fire emergency save" && git push -u origin fire'
+alias glog='git log --graph --pretty=format:"%Cred%h%Creset %Cgreen(%ci) %C(bold blue)<%an>%Creset %s%C(yellow)%d%Creset"'
+alias gbranches='git for-each-ref --sort=-committerdate refs/heads/ --format="%(HEAD) %(color:red)%(objectname:short)%(color:reset) - %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))" | less -R'
+alias gcheck="git commit -v"
+alias gaa="git add -A && git status"
+
+alias pserver="python -m SimpleHTTPServer"
+
+alias chromium="/Applications/Chromium.app/Contents/MacOS/Chromium"
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
+
+### Added for LearnDot
+
+export GEMFURY_URL=https://npm-proxy.fury.io/Ysxwcizgnr7DYExYTKVB/me/
+
+### Yarn
+
+export PATH="$HOME/.yarn/bin:$PATH"
+alias yi='yarn --no-lockfile'
+alias yup='curl -o- -L https://yarnpkg.com/install.sh | bash'
+
+# added by travis gem
+[ -f /Users/glebec/.travis/travis.sh ] && source /Users/glebec/.travis/travis.sh
+
+# misc
+export NODE_ENV="development"
